@@ -34,6 +34,8 @@ import android.widget.ViewSwitcher;
 
 import com.example.gowa_goaoverwhelminglywelcomesyou.BlogSection.BlogListAdapter;
 import com.example.gowa_goaoverwhelminglywelcomesyou.HelperClasses.SnapHelperByOne;
+import com.example.gowa_goaoverwhelminglywelcomesyou.Hotels.HotelSelectorActivity;
+import com.example.gowa_goaoverwhelminglywelcomesyou.YoutubeRecommendation.YoutubeAdapter;
 import com.example.gowa_goaoverwhelminglywelcomesyou.exploreGoa.ExploreAdapter;
 import com.example.gowa_goaoverwhelminglywelcomesyou.exploreGoa.ExploreModel;
 import com.example.gowa_goaoverwhelminglywelcomesyou.ui.home.HomeViewModel;
@@ -58,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
     FloatingActionButton fab;
 
     private AppBarConfiguration mAppBarConfiguration;
+
     ImageButton navIcon;
 
 
@@ -111,9 +114,9 @@ public class MainActivity extends AppCompatActivity {
     RecyclerView youTubeRecommendation;
     ArrayList<LocalRecommendationCard> localRecommendationList;
     ArrayList<BlogListAdapter.BlogModal> blogList;
-//    ArrayList<YoutubeAdapter.YoutubeModel> youtubeLinksList;
+    ArrayList<YoutubeAdapter.YoutubeModel> youtubeLinksList;
     LocalHorizonalViewAdapter localHorizonalViewAdapter;
-//    YoutubeAdapter youtubeAdapter;
+    YoutubeAdapter youtubeAdapter;
     ExploreAdapter exploreAdapter;
     ArrayList<ExploreModel> exploreList;
     TextView hello;
@@ -183,8 +186,19 @@ public class MainActivity extends AppCompatActivity {
         hello.setText("Hello, " + user.getDisplayName().split(" ")[0]);
 
         //todo add listeners
-
-//        getTrendingVideos();
+        mapsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, MapsActivity.class));
+            }
+        });
+        taxiButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, HotelSelectorActivity.class));
+            }
+        });
+        getTrendingVideos();
 
 
     }
@@ -225,19 +239,19 @@ public class MainActivity extends AppCompatActivity {
         blogRecommendation.setAdapter(blogAdapter);
         blogRecommendation.setLayoutManager(new LinearLayoutManager(MainActivity.this, LinearLayoutManager.HORIZONTAL, false));
     }
-//    void getTrendingVideos(){
-//        youtubeLinksList = new ArrayList<>();
-//        youtubeLinksList.add(new YoutubeAdapter.YoutubeModel("Offbeat Places Of Goa","Zi3x8YF88yc"));
-//        youtubeLinksList.add(new YoutubeAdapter.YoutubeModel("Goa Tourism","XQwcCdKGjPQ"));
-//        youtubeLinksList.add(new YoutubeAdapter.YoutubeModel("Famous 10 places to visit in Goa","5VsEgJqHeeo"));
-//        youtubeLinksList.add(new YoutubeAdapter.YoutubeModel("4 DAYS TRIP TO GOA","BdqYsE38xzs"));
-//
-//
-//        youtubeAdapter = new YoutubeAdapter(MainActivity.this,youtubeLinksList);
-//        youTubeRecommendation.setAdapter(youtubeAdapter);
-//        youTubeRecommendation.setLayoutManager(new LinearLayoutManager(MainActivity.this,LinearLayoutManager.HORIZONTAL,false));
-//
-//    }
+    void getTrendingVideos(){
+        youtubeLinksList = new ArrayList<>();
+        youtubeLinksList.add(new YoutubeAdapter.YoutubeModel("Offbeat Places Of Goa","Zi3x8YF88yc"));
+        youtubeLinksList.add(new YoutubeAdapter.YoutubeModel("Goa Tourism","XQwcCdKGjPQ"));
+        youtubeLinksList.add(new YoutubeAdapter.YoutubeModel("Famous 10 places to visit in Goa","5VsEgJqHeeo"));
+        youtubeLinksList.add(new YoutubeAdapter.YoutubeModel("4 DAYS TRIP TO GOA","BdqYsE38xzs"));
+
+
+        youtubeAdapter = new YoutubeAdapter(MainActivity.this,youtubeLinksList);
+        youTubeRecommendation.setAdapter(youtubeAdapter);
+        youTubeRecommendation.setLayoutManager(new LinearLayoutManager(MainActivity.this,LinearLayoutManager.HORIZONTAL,false));
+
+    }
     @Override
     public void onPause() {
         super.onPause();

@@ -83,6 +83,7 @@ public class StringVariable {
     public static final String PLACE_DETAILS = "place-details";
     public static final String PLACE_DETAILS_NAME = "name";
     public static final String PLACE_DETAILS_DESC = "description";
+    public static final String PLACE_DETAILS_DESC_HINDI = "description-hindi";
     public static final String PLACE_DETAILS_LOCATION = "location";
 
     //COMMENT

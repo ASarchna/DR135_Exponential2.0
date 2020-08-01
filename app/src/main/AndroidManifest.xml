@@ -1,6 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.gowa_goaoverwhelminglywelcomesyou">
+    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <uses-feature
+        android:name="android.hardware.camera"/>
+
+    <uses-feature android:name="android.hardware.camera.autofocus" />
+
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        android:maxSdkVersion="18" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
 
     <application
         android:name=".MyApplication"
@@ -10,8 +24,21 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".YoutubeRecommendation.YoutubeActivity"
+            android:theme="@style/AppThemeNoActionBar"/>
+        <activity android:name=".PlaceDetails.PlaceDetailsActivity"
+
+android:theme="@style/AppThemeNoActionBar"/>
+        <activity android:name=".Hotels.HotelSelectorActivity"
+            android:theme="@style/AppThemeNoActionBar"/>
+        <activity android:name=".Hotels.HotelsTabbedActivity"
+            android:theme="@style/AppThemeNoActionBar"/>
         <activity
             android:name=".Signup.SignupActivity"
+            android:theme="@style/AppThemeNoActionBar"/>
+        <activity android:name=".PlaceDetails.FaresDetailsActivity"
+            android:theme="@style/AppThemeNoActionBar"/>
+        <activity android:name=".MapsActivity"
             android:theme="@style/AppThemeNoActionBar"/>
         <activity android:name=".Login.LoginActivity"
             android:theme="@style/AppThemeNoActionBar"/>

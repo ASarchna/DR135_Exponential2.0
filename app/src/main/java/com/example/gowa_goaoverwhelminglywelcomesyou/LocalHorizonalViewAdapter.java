@@ -1,6 +1,8 @@
 package com.example.gowa_goaoverwhelminglywelcomesyou;
 
 import android.content.Context;
+import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,6 +10,7 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.gowa_goaoverwhelminglywelcomesyou.PlaceDetails.PlaceDetailsActivity;
 import com.facebook.drawee.view.SimpleDraweeView;
 
 import java.util.List;
@@ -37,11 +40,11 @@ public class LocalHorizonalViewAdapter extends RecyclerView.Adapter<LocalHorizon
             holder.imageView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-//                    Intent intent = new Intent(context, PlaceDetailsActivity.class);
-//                    intent.putExtra("placeId",localRecommendationList.get(position).getPlaceId());
-//                    Log.e("xxxxk",localRecommendationList.get(position).getPlaceId());
-//                    context.startActivity(new Intent(context, PlaceDetailsActivity.class));
-//                    String productName = localRecommendationList.get(position).getDescription().toString();
+                    Intent intent = new Intent(context, PlaceDetailsActivity.class);
+                    intent.putExtra("placeId",localRecommendationList.get(position).getPlaceId());
+                    Log.e("xxxxk",localRecommendationList.get(position).getPlaceId());
+                    context.startActivity(new Intent(context, PlaceDetailsActivity.class));
+                    String productName = localRecommendationList.get(position).getDescription().toString();
                 }
             });
         }

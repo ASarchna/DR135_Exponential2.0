@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:background="@drawable/bg"
+    android:gravity="center"
+    xmlns:android="http://schemas.android.com/apk/res/android" >
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:id="@+id/rel1"
+
+        android:gravity="center">
+    <EditText
+        android:id="@+id/fromDate"
+        android:clickable="true"
+        android:drawableStart="@drawable/ic_icons8_calendar"
+        android:editable="false"
+        android:background="@drawable/edittext_hotel"
+        android:hint="From Date"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content" />
+
+    <EditText
+        android:id="@+id/toDate"
+        android:clickable="true"
+        android:editable="false"
+        android:layout_toRightOf="@id/fromDate"
+        android:drawableStart="@drawable/ic_icons8_calendar"
+
+        android:hint="To Date"
+        android:layout_marginLeft="20dp"
+        android:background="@drawable/edittext_hotel"
+
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content" />
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_below="@id/rel1"
+        android:layout_height="wrap_content"
+        >
+        <TextView
+            android:id="@+id/tv_adults"
+            android:background="@drawable/edittext_hotel"
+            android:layout_marginTop="20dp"
+            android:layout_width="200dp"
+
+            android:layout_height="wrap_content"
+            android:text="No. of Adults"
+            android:textSize="16dp"
+            android:textAlignment="center"
+            android:foregroundGravity="center"
+            android:gravity="center"
+            android:layout_centerHorizontal="true"/>
+
+
+        <TextView
+            android:id="@+id/tv_children"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/edittext_hotel"
+
+            android:text="No. of Children"
+            android:layout_below="@id/tv_adults"
+            android:textSize="16dp"
+            android:layout_marginTop="20dp"
+            android:textAlignment="center"
+            android:foregroundGravity="center"
+            android:gravity="center"
+            android:layout_centerHorizontal="true"/>
+
+
+        <TextView
+            android:id="@+id/tv_rooms"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:text="No. of Rooms"
+            android:layout_below="@id/tv_children"
+            android:textSize="16dp"        android:background="@drawable/edittext_hotel"
+
+            android:layout_marginTop="20dp"
+            android:textAlignment="center"
+            android:foregroundGravity="center"
+            android:gravity="center"
+            android:layout_centerHorizontal="true"/>
+
+        <Button
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/search_button"
+            android:text="Search"
+            android:background="@color/bgSolidDark"
+            android:layout_below="@id/tv_rooms"
+            android:textColor="#ffffff"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dp"/>
+
+    </RelativeLayout>
+
+
+
+
+</RelativeLayout>

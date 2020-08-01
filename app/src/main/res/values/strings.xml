@@ -17,7 +17,12 @@
     <string name="menu_send">Send</string>
     <string name="flights_to_goa">Flights</string>
     <string name="trains_to_goa">Trains</string>
+    <string name="player_error">Error initializing YouTube player: %s</string>
+
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="YOUTUBE_API_KEY">AIzaSyDrLzBwXscaHGXOMANe8zDIOX15RJCd27E</string>
+
 </resources>
