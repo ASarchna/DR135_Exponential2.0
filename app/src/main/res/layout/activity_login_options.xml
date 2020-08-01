@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <LinearLayout android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        xmlns:android="http://schemas.android.com/apk/res/android" >
+        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/bg">
+
+            <ProgressBar
+                android:id="@+id/progress_id"
+                android:visibility="gone"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="100dp"
+                android:id="@+id/reative1">
+                <ImageView
+
+                    android:layout_centerVertical="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:src="@drawable/logo"
+                    android:layout_marginBottom="1dp"
+                    android:id="@+id/logo"/>
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_centerHorizontal="true"
+                android:layout_below="@id/reative1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/relative2">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="40sp"
+                    android:textColor="#ffffff"
+                    android:lineSpacingExtra="9sp"
+                    android:text="Gowa!"/>
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/relative3"
+                android:layout_marginLeft="92dp"
+                android:layout_marginRight="92dp"
+                android:layout_marginTop="100dp"
+                android:layout_below="@+id/relative2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:textAlignment="center"
+                    android:paddingTop="15dp"
+                    android:paddingLeft="15dp"
+                    android:paddingRight="15dp"
+                    android:layout_width="match_parent"
+                    android:id="@+id/Sign_in_button"
+                    android:textColor="#902182"
+                    android:lineSpacingExtra="7sp"
+                    android:background="@drawable/sign_up_border"
+                    android:text="Sign In"
+                    android:layout_height="?actionBarSize"
+                    android:textSize="21sp"
+                    />
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_marginTop="29dp"
+                android:layout_marginLeft="99dp"
+                android:layout_marginRight="99dp"
+                android:layout_centerHorizontal="true"
+                android:id="@+id/relative4"
+                android:layout_below="@id/relative3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:id="@+id/sign_up_using_google"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/image_2"/>
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_marginTop="50dp"
+                android:layout_centerHorizontal="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/relative5"
+                android:layout_below="@id/relative4">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="15sp"
+                    android:textColor="#ffffff"
+                    android:lineSpacingExtra="1sp"
+                    android:gravity="center_horizontal"
+                    android:text="Don’t have an account?"/>
+            </RelativeLayout>
+            <RelativeLayout
+
+                android:layout_marginBottom="25dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginLeft="135dp"
+                android:layout_marginRight="135dp"
+                android:layout_centerHorizontal="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/relative6"
+                android:layout_below="@id/relative5">
+                <TextView
+                    android:textAlignment="center"
+                    android:paddingTop="5dp"
+                    android:paddingLeft="15dp"
+                    android:paddingRight="15dp"
+                    android:layout_width="match_parent"
+                    android:id="@+id/Sign_up"
+                    android:textColor="#902182"
+                    android:lineSpacingExtra="2sp"
+                    android:background="@drawable/sign_up_border"
+                    android:text="Sign Up"
+                    android:layout_height="30dp"
+                    android:textSize="15sp"
+                    />
+            </RelativeLayout>
+        </RelativeLayout>
+    </LinearLayout>
+</RelativeLayout>

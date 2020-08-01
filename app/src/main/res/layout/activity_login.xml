@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    xmlns:android="http://schemas.android.com/apk/res/android" />
+    <LinearLayout android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        xmlns:android="http://schemas.android.com/apk/res/android" >
+
+        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context="com.exponential.GoaTourist.SignupActivity"
+            android:background="@drawable/bg">
+            <RelativeLayout
+                android:id="@+id/linear_progress"
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <ProgressBar
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    />
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="100dp"
+                android:id="@+id/reative1">
+                <ImageView
+
+                    android:layout_centerVertical="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:src="@drawable/logo"
+                    android:layout_marginBottom="1dp"
+                    android:id="@+id/logo"/>
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_centerHorizontal="true"
+                android:layout_below="@id/reative1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/relative2">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="40sp"
+                    android:textColor="#ffffff"
+                    android:lineSpacingExtra="9sp"
+                    android:text="Gowa!"/>
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/relative3"
+                android:layout_marginLeft="44dp"
+                android:layout_marginRight="44dp"
+                android:layout_marginTop="100dp"
+                android:layout_below="@+id/relative2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <EditText
+
+                    android:paddingLeft="15dp"
+                    android:paddingRight="15dp"
+                    android:layout_width="match_parent"
+                    android:id="@+id/email"
+                    android:textColorHint="#D5D5D5"
+                    android:textColor="#aaffffff"
+                    android:lineSpacingExtra="7sp"
+                    android:background="@drawable/border_round"
+                    android:hint="Enter your Email"
+                    android:layout_height="?actionBarSize"
+                    android:textSize="21sp"
+                    />
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_marginLeft="44dp"
+                android:layout_marginRight="44dp"
+                android:layout_marginTop="25dp"
+                android:layout_below="@+id/relative3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:id="@+id/relative4">
+                <EditText
+                    android:paddingLeft="15dp"
+                    android:paddingRight="15dp"
+                    android:layout_width="match_parent"
+                    android:id="@+id/password"
+                    android:textColorHint="#D5D5D5"
+                    android:textColor="#aaffffff"
+                    android:lineSpacingExtra="7sp"
+                    android:background="@drawable/border_round"
+                    android:hint="Enter Password"
+                    android:layout_height="?actionBarSize"
+                    android:textSize="21sp"
+                    />
+
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_marginLeft="116dp"
+                android:layout_marginRight="116dp"
+                android:layout_marginTop="25dp"
+                android:layout_below="@+id/relative4"
+                android:id="@+id/relative6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:textAlignment="center"
+                    android:paddingTop="15dp"
+                    android:paddingLeft="15dp"
+                    android:paddingRight="15dp"
+                    android:layout_width="match_parent"
+                    android:id="@+id/Sign_in_button"
+                    android:textColor="#902182"
+                    android:lineSpacingExtra="7sp"
+                    android:background="@drawable/sign_up_border"
+                    android:text="Sign In"
+                    android:layout_height="?actionBarSize"
+                    android:textSize="21sp"
+                    />
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_marginBottom="25dp"
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_below="@id/relative6"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/create_account"
+                    android:textSize="20dp"
+                    android:textAlignment="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="#ffffff"
+                    android:text="Create an account"/>
+            </RelativeLayout>
+        </RelativeLayout></LinearLayout>
+</RelativeLayout>
