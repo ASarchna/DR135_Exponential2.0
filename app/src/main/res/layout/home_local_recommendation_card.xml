@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="wrap_content"
+
+    android:layout_height="match_parent">
+    <androidx.cardview.widget.CardView
+        android:background="#00FFFFFF"
+        android:layout_width="wrap_content"
+        android:layout_marginRight="15dp"
+        android:layout_marginLeft="15dp"
+        app:cardCornerRadius="10dp"
+        android:layout_height="wrap_content">
+
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:layout_width="312dp"
+            android:layout_height="200dp"
+            android:scaleType="fitXY"
+            android:id="@+id/localRecyclerImageView"
+            android:src="@drawable/meuseum"
+             />
+
+        <RelativeLayout
+            android:layout_width="312dp"
+            android:layout_height="40dp"
+            android:layout_gravity="bottom"
+            android:background="#95000000"
+>
+
+
+            <TextView
+                android:layout_centerVertical="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginLeft="15dp"
+                android:fontFamily="@font/poppins_regular"
+                android:text="Read More"
+                android:textColor="#ffffff"
+                android:id="@+id/localRecyclerTitle"
+                android:textSize="15sp" />
+
+
+
+
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</LinearLayout>
