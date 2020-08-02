@@ -178,17 +178,17 @@ public class Flights_to_goa_fragment extends AppCompatActivity {
                         Log.e("FLIGHT RESP OBJECT: ", object + "");
 
                         flightsModelList.add(new FlightsModel(
-                                String.valueOf(object.getString("images")),
-                                String.valueOf(object.getString("departure_time")),
-                                String.valueOf(object.getString("arrival_time")),
-                                String.valueOf(object.getString("deep_link")),
-                                String.valueOf(object.getString("stoppage")),
-                                String.valueOf(object.getString("price")),
-                                String.valueOf(object.getString("airlines")),
-                                String.valueOf(object.getString("stoppage")),
-                                String.valueOf(object.getString("fly_duration")),
-                                String.valueOf("GOA"),
-                                String.valueOf(object.getString("origin"))));
+                                object.getString("images"),
+                                object.getString("departure_time"),
+                                object.getString("arrival_time"),
+                                object.getString("deep_link"),
+                                object.getString("stoppage"),
+                                object.getString("price"),
+                                object.getString("airlines"),
+                                object.getString("stoppage"),
+                                object.getString("fly_duration"),
+                                "GOA",
+                                object.getString("origin")));
                     }
                     flightsAdapter.notifyDataSetChanged();
 
