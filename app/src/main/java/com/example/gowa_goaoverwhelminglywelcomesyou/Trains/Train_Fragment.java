@@ -2,6 +2,7 @@ package com.example.gowa_goaoverwhelminglywelcomesyou.Trains;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -161,7 +162,7 @@ public class Train_Fragment extends AppCompatActivity {
 
     void getFlights(){
 
-        Log.e("Entered Get Flight","Yes");
+        Log.e("Entered Get Flight","Yes "+ Url);
         StringRequest stringRequest = new StringRequest(Url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -171,6 +172,9 @@ public class Train_Fragment extends AppCompatActivity {
                     JSONObject jsonObject = new JSONObject(response);
                     JSONArray jsonArray = jsonObject.getJSONArray("trains");
                     Log.e("FLIGHT RESPONSE : ", jsonArray.length() + "");
+                    if(jsonArray.length()==0){
+                        findViewById(R.id.not_avail).setVisibility(View.VISIBLE);
+                    }
 
                     for (int i = 0; i < jsonArray.length(); i++) {
                         JSONObject object = jsonArray.getJSONObject(i);
@@ -210,6 +214,8 @@ public class Train_Fragment extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
+                Log.e("FLIGHT RESPONSE : ", error + "");
+
                 // Anything you want
             }
         });

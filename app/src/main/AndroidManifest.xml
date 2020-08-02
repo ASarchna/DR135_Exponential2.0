@@ -34,6 +34,10 @@
 >
 
         </activity>
+        <activity android:name=".Packages.PackagesActivity"
+            android:theme="@style/AppThemeNoActionBar"/>
+        <activity android:name=".Packages.PackagesDetailsActivity"
+            android:theme="@style/AppThemeNoActionBar"/>
 <activity
     android:name=".PlaceDetails.CreateProfileActivity"
     android:theme="@style/AppThemeNoActionBar"/>

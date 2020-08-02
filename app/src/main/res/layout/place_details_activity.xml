@@ -96,20 +96,34 @@
 
             </LinearLayout>
 
-            <TextView
+            <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="22dp"
-                android:layout_marginLeft="22dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="33dp"
-                android:layout_marginRight="33dp"
-                android:fontFamily="@font/poppins_extrabold"
-                android:lineSpacingExtra="10sp"
-                android:textColor="#1e2432"
-                android:textSize="24sp"
-                android:id="@+id/placeName"
-                android:text="----" />
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="22dp"
+                    android:layout_marginLeft="22dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="33dp"
+                    android:layout_marginRight="33dp"
+                    android:fontFamily="@font/poppins_extrabold"
+                    android:lineSpacingExtra="10sp"
+                    android:textColor="#1e2432"
+                    android:textSize="24sp"
+                    android:id="@+id/placeName"
+                    android:text="----" />
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/ic_directions"
+                    android:layout_gravity="center"
+                    android:padding="5dp"
+                    android:tint="@color/colorAccent"
+                    android:id="@+id/directions"
+                    />
+
+            </LinearLayout>
 
 
             <LinearLayout
@@ -128,10 +142,12 @@
                     android:layout_gravity="center"
                     android:numStars="5"
                     android:progressTint="#f15421"
-                    android:rating="4" />
+                    android:rating="4"
+                    android:stepSize="1"/>
 
 
                 <TextView
+                    android:id="@+id/rating_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="8.4dp"
@@ -346,6 +362,16 @@
                 android:layout_marginRight="22dp"
                 android:layout_marginLeft="22dp"
                 android:text="GET FARES"
+                />
+
+            <RatingBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/rating_bar"
+                android:stepSize="1"
+                android:layout_gravity="center"
+                android:numStars="5"
+
                 />
 
 

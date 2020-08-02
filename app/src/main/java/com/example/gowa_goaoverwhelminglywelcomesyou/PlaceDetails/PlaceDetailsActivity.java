@@ -17,6 +17,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -41,6 +42,7 @@ import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -58,6 +60,7 @@ import java.util.Map;
 
 public class PlaceDetailsActivity extends AppCompatActivity {
 
+    boolean isupdating = false;
     ImageView likeView;
     int likeState = 0;
     String type,placeId = "se-cathedral";
@@ -92,6 +95,7 @@ public class PlaceDetailsActivity extends AppCompatActivity {
     TextView history,facts;
 
     private FusedLocationProviderClient fusedLocationClient;
+    int currentRatings = 5;
 
 
 
@@ -105,6 +109,7 @@ public class PlaceDetailsActivity extends AppCompatActivity {
     private double currentLatitude;
     private double currentLongitude;
     float distance_bw_one_and_two=0;
+    private RatingBar ratingBar;
 
 
 
@@ -234,6 +239,46 @@ public class PlaceDetailsActivity extends AppCompatActivity {
         facts = findViewById(R.id.facts);
         imageButton = findViewById(R.id.textToSpeechButton);
         languageBox = findViewById(R.id.languageBox);
+        ratingBar = findViewById(R.id.rating_bar);
+
+        ratingBar.setMax(5);
+        ratingBar.setStepSize(1);
+
+        ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
+            @Override
+            public void onRatingChanged(final RatingBar ratingBar, final float rating, boolean fromUser) {
+                if(isupdating) return;
+                FirebaseDatabase.getInstance().getReference().child(StringVariable.PLACE_DETAILS).child(placeId).child("rating").addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                        Log.d("xxxx",dataSnapshot.toString());
+                        String current = String.valueOf(dataSnapshot.getValue());
+                        String[] arrOfStr = current.split("/", 5);
+
+                        currentRatings = Integer.valueOf(arrOfStr[0]);
+                        int ratingCount = Integer.valueOf(arrOfStr[1]);
+
+                        int newratings = currentRatings+(int)rating;
+                        int newcount = ratingCount+1;
+
+                        FirebaseDatabase.getInstance().getReference().child(StringVariable.PLACE_DETAILS).child(placeId).child("rating").setValue(
+                          newratings+"/"+newcount
+                        );
+                        FirebaseDatabase.getInstance().getReference().child(StringVariable.PLACE_DETAILS).child(placeId).child("ratingsBy").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(
+                                rating
+                        );
+
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+            }
+        });
 
 
 
@@ -301,6 +346,7 @@ else{
 
         LinearSnapHelper linearSnapHelper = new SnapHelperByOne();
         linearSnapHelper.attachToRecyclerView(imageRecycler);
+
 
 
         showOnMapsButton.setOnClickListener(new View.OnClickListener() {
@@ -430,6 +476,20 @@ else{
                 placeName.setText(String.valueOf(dataSnapshot.child(StringVariable.PLACE_DETAILS_NAME).getValue()));
                 placeLoc.setText(String.valueOf(dataSnapshot.child(StringVariable.PLACE_DETAILS_LOCATION).getValue()));
 
+                String current = String.valueOf(dataSnapshot.child("rating").getValue());
+                String[] arrOfStr = current.split("/", 5);
+
+                currentRatings = Integer.valueOf(arrOfStr[0]);
+                int ratingCount = Integer.valueOf(arrOfStr[1]);
+
+                ((RatingBar)findViewById(R.id.RatingBar_Id)).setRating(currentRatings/ratingCount);
+                ((TextView)findViewById(R.id.rating_text)).setText(currentRatings/ratingCount+"  |  45 reviews");
+                if(dataSnapshot.hasChild("ratingsBy")){
+                    if(String.valueOf(dataSnapshot.child("ratingsBy").getValue()).contains(FirebaseAuth.getInstance().getCurrentUser().getUid())){
+                        isupdating = true;
+                        ratingBar.setRating(Float.parseFloat(String.valueOf(dataSnapshot.child("ratingsBy").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).getValue())));
+                    }
+                }
 
 //                imageList.clear();
                 imageList.add(String.valueOf(dataSnapshot.child("img1").getValue()));
@@ -484,6 +544,16 @@ else{
                     }
                 });
                 commentsList.clear();
+
+                findViewById(R.id.directions).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Uri gmmIntentUri = Uri.parse("google.navigation:q="+lattitude+","+longitude);
+                        Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+                        mapIntent.setPackage("com.google.android.apps.maps");
+                        startActivity(mapIntent);
+                    }
+                });
                 for(DataSnapshot ds : dataSnapshot.child(StringVariable.COMMENTS).getChildren()){
                     SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
                     String dateString = "19/01/2020";

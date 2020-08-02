@@ -21,6 +21,7 @@ import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -42,6 +43,7 @@ import com.example.gowa_goaoverwhelminglywelcomesyou.BlogSection.BlogListAdapter
 import com.example.gowa_goaoverwhelminglywelcomesyou.Flights.Flights_to_goa_fragment;
 import com.example.gowa_goaoverwhelminglywelcomesyou.HelperClasses.SnapHelperByOne;
 import com.example.gowa_goaoverwhelminglywelcomesyou.Hotels.HotelSelectorActivity;
+import com.example.gowa_goaoverwhelminglywelcomesyou.Packages.PackagesActivity;
 import com.example.gowa_goaoverwhelminglywelcomesyou.Trains.Train_Fragment;
 import com.example.gowa_goaoverwhelminglywelcomesyou.YoutubeRecommendation.YoutubeAdapter;
 import com.example.gowa_goaoverwhelminglywelcomesyou.exploreGoa.ExploreModel;
@@ -56,9 +58,14 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.gson.JsonObject;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
     private HomeViewModel homeViewModel;
@@ -139,22 +146,24 @@ public class MainActivity extends AppCompatActivity {
         exploreList = new ArrayList<>();
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Explore");
 
+        exploreList.add(new ExploreModel("https://www.peakadventuretour.com/blog/wp-content/uploads/2018/06/Bungee-Jumping-in-India.jpg","Adventure"));
+        exploreList.add(new ExploreModel("https://static-blog.treebo.com/wp-content/uploads/2018/04/Arambol-Sweet-Water-Lake.jpg","Destination Wedding"));
+        exploreList.add(new ExploreModel("https://images.adsttc.com/media/images/5ced/70a5/284d/d1e7/0300/041f/newsletter/03_cutaway-london-big-ben.jpg?1559064722","Landmarks"));
+        exploreList.add(new ExploreModel("https://www.newzealand.com/assets/Tourism-NZ/Auckland/5d4dac429b/img-1536218738-4897-18029-A08AC5F0-99A6-A552-9AF13DF35947554D__FocalPointCropWzQyNyw2NDAsNTAsNTAsODUsImpwZyIsNjUsMi41XQ.jpg","Museums"));
+        exploreList.add(new ExploreModel("https://media.cntraveller.in/wp-content/uploads/2016/11/goafolkdanceslead-866x487.jpg","Religions"));
+        exploreList.add(new ExploreModel("https://www.newzealand.com/assets/Tourism-NZ/Auckland/5d4dac429b/img-1536218738-4897-18029-A08AC5F0-99A6-A552-9AF13DF35947554D__FocalPointCropWzQyNyw2NDAsNTAsNTAsODUsImpwZyIsNjUsMi41XQ.jpg","Romantic"));
+        exploreList.add(new ExploreModel("https://imgstaticcontent.lbb.in/lbbnew/wp-content/uploads/sites/9/2017/01/flea2.jpg","Shops"));
+        exploreList.add(new ExploreModel("https://atlas.etihad.com/wp-content/uploads/2018/02/shutterstock_482978608.jpg","Tour and Packages"));
         topRecyclerView = findViewById(R.id.recycler_view);
+        Collections.reverse(exploreList);
 
-        reference.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                Log.e("xxxx", dataSnapshot.toString());
-                exploreList.clear();
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    Log.e("xxyy", String.valueOf(snapshot.child("Image").getValue()));
-                    exploreList.add(new ExploreModel(String.valueOf(snapshot.child("Image").getValue()), String.valueOf(snapshot.getKey())));
-                }
                 LinearSnapHelper linearSnapHelper = new SnapHelperByOne();
                 linearSnapHelper.attachToRecyclerView(topRecyclerView);
 
                 exploreAdapter = new ExploreAdapter(MainActivity.this, exploreList);
-                topRecyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this, LinearLayoutManager.HORIZONTAL, true));
+                LinearLayoutManager lm = new LinearLayoutManager(MainActivity.this, LinearLayoutManager.HORIZONTAL, true);
+                lm.setStackFromEnd(true);
+                topRecyclerView.setLayoutManager(lm);
                 topRecyclerView.setAdapter(exploreAdapter);
 
                 topRecyclerView.setOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -176,14 +185,6 @@ public class MainActivity extends AppCompatActivity {
                 });
 
                 exploreAdapter.notifyDataSetChanged();
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-
 
         initCountryText();
         initSwitchers();
@@ -212,11 +213,20 @@ public class MainActivity extends AppCompatActivity {
         hello.setText("Hello, " + user.getDisplayName().split(" ")[0]);
 
         //todo add listeners
+//        mapsButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                startActivity(new Intent(MainActivity.this, MapsActivity.class));
+//            }
+//        });
         mapsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, MapsActivity.class));
-            }
+
+                String uri = String.format(Locale.ENGLISH, "geo:%f,%f?q=nearby plcaes, restaurants, atms, monuments", 15.492508, 73.773457);
+                Intent mapIntent2 = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
+                mapIntent2.setPackage("com.google.android.apps.maps");
+                startActivity(mapIntent2);            }
         });
         taxiButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -224,6 +234,13 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(MainActivity.this, HotelSelectorActivity.class));
             }
         });
+        toursButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, PackagesActivity.class));
+            }
+        });
+
         trainsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -263,7 +280,7 @@ public class MainActivity extends AppCompatActivity {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (requestCode == 100) {
             if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                startActivity(new Intent(MainActivity.this, PlaceDescriptionActivity.class));
+                startActivity(new Intent(MainActivity.this, TestActivity.class));
             } else {
                 Toast.makeText(this, "camera permission denied", Toast.LENGTH_LONG).show();
             }
@@ -449,6 +466,23 @@ public class MainActivity extends AppCompatActivity {
             notifyDataSetChanged();
 
         }
+    }
+    public String getAssetJsonData(Context context) {
+        String json = null;
+        try {
+            InputStream is = context.getAssets().open("slider.json");
+            int size = is.available();
+            byte[] buffer = new byte[size];
+            is.read(buffer);
+            is.close();
+            json = new String(buffer, "UTF-8");
+        } catch (IOException ex) {
+            ex.printStackTrace();
+            return null;
+        }
+
+        Log.e("data", json);
+        return json;
     }
 
 }

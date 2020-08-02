@@ -142,11 +142,23 @@ public class TestActivity extends AppCompatActivity {
     };
 
     private void showBottomSheet() {
-        Toast.makeText(TestActivity.this,"Opening sheet",Toast.LENGTH_SHORT).show();
             View bottomView = getLayoutInflater().inflate(R.layout.bottom_sheet_scanned, null);
-            BottomSheetDialog dialog = new BottomSheetDialog(this);
+            final BottomSheetDialog dialog = new BottomSheetDialog(this);
             dialog.setContentView(bottomView);
             dialog.show();
+
+            dialog.findViewById(R.id.report_ok).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                }
+            });
+        dialog.findViewById(R.id.report_cancel).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
             dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
                 @Override
                 public void onDismiss(DialogInterface dialog) {
