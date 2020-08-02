@@ -181,17 +181,17 @@ public class Train_Fragment extends AppCompatActivity {
                         Log.e("FLIGHT RESP OBJECT: ", object + "");
 
                         trainModelList.add(new FlightsModel(
-                                String.valueOf(object.getString("number")),
-                                String.valueOf(object.getString("source_departure_time")),
-                                String.valueOf(object.getString("destination_arrival_time")),
-                                String.valueOf(object.getString("source_name")),
-                                String.valueOf(object.getString("destination_name")),
-                                String.valueOf(object.getString("end")),
-                                String.valueOf(object.getString("name")),
-                                String.valueOf(object.getString("destination_name")),
-                                String.valueOf(object.getString("travel_time")),
-                                String.valueOf("GOA"),
-                                String.valueOf(object.getString("source_name"))));
+                                object.getString("number"),
+                                object.getString("source_departure_time"),
+                                object.getString("destination_arrival_time"),
+                                object.getString("source_name"),
+                                object.getString("destination_name"),
+                                object.getString("end"),
+                                object.getString("name"),
+                                object.getString("destination_name"),
+                                object.getString("travel_time"),
+                                "GOA",
+                                object.getString("source_name")));
                     }
                     flightsAdapter.notifyDataSetChanged();
 
