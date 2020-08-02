@@ -4,6 +4,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.StyleRes;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
@@ -15,12 +17,15 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.LinearSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,15 +35,18 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextSwitcher;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.ViewSwitcher;
 
 import com.example.gowa_goaoverwhelminglywelcomesyou.BlogSection.BlogListAdapter;
+import com.example.gowa_goaoverwhelminglywelcomesyou.Flights.Flights_to_goa_fragment;
 import com.example.gowa_goaoverwhelminglywelcomesyou.HelperClasses.SnapHelperByOne;
 import com.example.gowa_goaoverwhelminglywelcomesyou.Hotels.HotelSelectorActivity;
+import com.example.gowa_goaoverwhelminglywelcomesyou.Trains.Train_Fragment;
 import com.example.gowa_goaoverwhelminglywelcomesyou.YoutubeRecommendation.YoutubeAdapter;
-import com.example.gowa_goaoverwhelminglywelcomesyou.exploreGoa.ExploreAdapter;
 import com.example.gowa_goaoverwhelminglywelcomesyou.exploreGoa.ExploreModel;
 import com.example.gowa_goaoverwhelminglywelcomesyou.ui.home.HomeViewModel;
+import com.facebook.drawee.view.SimpleDraweeView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -50,6 +58,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     private HomeViewModel homeViewModel;
@@ -60,6 +69,8 @@ public class MainActivity extends AppCompatActivity {
     FloatingActionButton fab;
 
     private AppBarConfiguration mAppBarConfiguration;
+
+    String[] appPermissions = {Manifest.permission.CAMERA, Manifest.permission.READ_EXTERNAL_STORAGE};
 
     ImageButton navIcon;
 
@@ -87,9 +98,6 @@ public class MainActivity extends AppCompatActivity {
     private String[] temperatures = {"223", "143", "432", "876", "345", "654", "324", "456", "987"};
     private String[] times = new String[10];
 
-    private ExploreAdapter sliderAdapter;
-    private LinearLayoutManager layoutManger;
-    private RecyclerView recyclerView;
     private RecyclerView topRecyclerView;
     private ImageSwitcher mapSwitcher;
     private TextSwitcher temperatureSwitcher;
@@ -105,7 +113,7 @@ public class MainActivity extends AppCompatActivity {
     private int countryOffset2;
     private long countryAnimDuration;
     private int currentPosition;
-
+    private  int lastPosition = 0;
 
     private ArrayList<MonumentsModel> monumentsList;
 
@@ -148,6 +156,24 @@ public class MainActivity extends AppCompatActivity {
                 exploreAdapter = new ExploreAdapter(MainActivity.this, exploreList);
                 topRecyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this, LinearLayoutManager.HORIZONTAL, true));
                 topRecyclerView.setAdapter(exploreAdapter);
+
+                topRecyclerView.setOnScrollListener(new RecyclerView.OnScrollListener() {
+                    @Override
+                    public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
+                        super.onScrollStateChanged(recyclerView, newState);
+                        int cp = ((LinearLayoutManager)topRecyclerView.getLayoutManager()).findFirstVisibleItemPosition();
+                        if(cp!=lastPosition) {
+                            lastPosition = cp;
+                            exploreAdapter.maximizeView(cp);
+                        }
+
+                    }
+
+                    @Override
+                    public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+                        super.onScrolled(recyclerView, dx, dy);
+                    }
+                });
 
                 exploreAdapter.notifyDataSetChanged();
             }
@@ -198,9 +224,50 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(MainActivity.this, HotelSelectorActivity.class));
             }
         });
+        trainsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this, Train_Fragment.class));
+            }
+        });
+        flightsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this, Flights_to_goa_fragment.class));
+            }
+        });
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                List<String> permissionsNeeded = new ArrayList<>();
+                for(String perm: appPermissions){
+                    if (ContextCompat.checkSelfPermission(MainActivity.this, perm)
+                            == PackageManager.PERMISSION_DENIED){
+                        permissionsNeeded.add(perm);
+                                            }
+                }
+                if(!permissionsNeeded.isEmpty()){
+                    ActivityCompat.requestPermissions(MainActivity.this, permissionsNeeded.toArray(new String[permissionsNeeded.size()]), 100);
+                }
+                else {
+                    startActivity(new Intent(MainActivity.this, TestActivity.class));
+                }
+            }
+        });
         getTrendingVideos();
 
+    }
 
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == 100) {
+            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                startActivity(new Intent(MainActivity.this, PlaceDescriptionActivity.class));
+            } else {
+                Toast.makeText(this, "camera permission denied", Toast.LENGTH_LONG).show();
+            }
+        }
     }
 
     void getLocalRecommendation(){
@@ -324,6 +391,64 @@ public class MainActivity extends AppCompatActivity {
             return textView;
         }
 
+    }
+    public class ExploreAdapter extends RecyclerView.Adapter<ExploreAdapter.ViewHolder> {
+        private Context context;
+        private ArrayList<ExploreModel> list;
+        private int maximize = 0;
+
+        public ExploreAdapter(Context context, ArrayList<ExploreModel> list) {
+            this.context = context;
+            this.list = list;
+        }
+
+        @NonNull
+        @Override
+        public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+            LayoutInflater inflater = LayoutInflater.from(context);
+            View view = inflater.inflate(R.layout.explore_card_view, parent, false);
+            ViewHolder holder = new ViewHolder(view);
+            return holder;
+        }
+
+        @Override
+        public void onBindViewHolder(@NonNull ExploreAdapter.ViewHolder holder, int position) {
+            ExploreModel item=list.get(position);
+            holder.simpleDraweeView.setImageURI(item.getImage());
+            holder.explore_text.setText(item.getName());
+//            if(position == maximize+1){
+//                holder.layout.animate().scaleX(1.2f);
+//                holder.layout.animate().scaleY(1.2f);
+//            }
+//            else{
+//                holder.layout.animate().scaleX(1f);
+//                holder.layout.animate().scaleY(1f);
+//            }
+            Log.e("xxxx",item.getName());
+        }
+
+        @Override
+        public int getItemCount() {
+            return list.size();
+        }
+
+        public class ViewHolder extends RecyclerView.ViewHolder {
+            public SimpleDraweeView simpleDraweeView;
+            public TextView explore_text;
+            public LinearLayout layout;
+            public ViewHolder(@NonNull View itemView) {
+                super(itemView);
+                simpleDraweeView=(SimpleDraweeView)itemView.findViewById(R.id.imageview);
+                explore_text=(TextView)itemView.findViewById(R.id.explore_place);
+                layout = (LinearLayout)itemView.findViewById(R.id.main_layout);
+            }
+        }
+
+        public void maximizeView(int pos){
+            this.maximize = pos;
+            notifyDataSetChanged();
+
+        }
     }
 
 }

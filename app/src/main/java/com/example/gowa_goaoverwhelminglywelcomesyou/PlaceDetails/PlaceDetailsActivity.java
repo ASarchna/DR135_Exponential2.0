@@ -4,10 +4,8 @@ package com.example.gowa_goaoverwhelminglywelcomesyou.PlaceDetails;
 import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
-import android.content.IntentSender;
 import android.content.pm.PackageManager;
 import android.location.Location;
-import android.location.LocationListener;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Looper;
@@ -36,7 +34,6 @@ import com.example.gowa_goaoverwhelminglywelcomesyou.HelperClasses.SnapHelperByO
 import com.example.gowa_goaoverwhelminglywelcomesyou.R;
 import com.example.gowa_goaoverwhelminglywelcomesyou.StringVariable;
 import com.facebook.drawee.view.SimpleDraweeView;
-import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
@@ -60,7 +57,6 @@ import java.util.Locale;
 import java.util.Map;
 
 public class PlaceDetailsActivity extends AppCompatActivity {
-
 
     ImageView likeView;
     int likeState = 0;
@@ -102,7 +98,7 @@ public class PlaceDetailsActivity extends AppCompatActivity {
 
     String userUID, userName, userURI;
 
-    //for current location
+    //for cur   rent location
     private final static int CONNECTION_FAILURE_RESOLUTION_REQUEST = 9000;
     private GoogleApiClient mGoogleApiClient;
     private LocationRequest mLocationRequest;
@@ -116,6 +112,8 @@ public class PlaceDetailsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.place_details_activity);
+
+        placeId = getIntent().getStringExtra("placeId");
 
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
         locationCallback = new LocationCallback() {
@@ -301,15 +299,8 @@ else{
 
         //todo
 
-
-
-
         LinearSnapHelper linearSnapHelper = new SnapHelperByOne();
         linearSnapHelper.attachToRecyclerView(imageRecycler);
-
-
-        imageRecycler.setAdapter(imageAdapter);
-
 
 
         showOnMapsButton.setOnClickListener(new View.OnClickListener() {
@@ -407,7 +398,6 @@ else{
         placeId = getIntent().getStringExtra("placeId");
 
 
-        Log.e("xxxxi",placeId);
         likeView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -475,7 +465,6 @@ else{
 
                 }
 
-
                 Location l2=new Location("Two");
                 l2.setLatitude(Double.parseDouble(lattitude));
                 l2.setLongitude(Double.parseDouble(longitude));
@@ -515,6 +504,8 @@ else{
 
                 imageAdapter = new PlaceImageSliderAdapter(mContext, imageList);
                 imageRecycler.setLayoutManager(new LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false));
+                imageRecycler.setAdapter(imageAdapter);
+
 
                 commentsAdapter = new CommentsAdapter(mContext, commentsList);
 
@@ -522,12 +513,7 @@ else{
                 commentsRecycler.setAdapter(commentsAdapter);
                 commentsRecycler.setLayoutManager(new LinearLayoutManager(mContext, LinearLayoutManager.VERTICAL, false));
 
-
-
-
             }
-
-
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {

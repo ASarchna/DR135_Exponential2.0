@@ -8,6 +8,8 @@
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
+    <string name="camera_error">This device doesn\'t support Camera2 API.</string>
+
 
     <string name="menu_home">Home</string>
     <string name="menu_gallery">Gallery</string>
@@ -24,5 +26,19 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
     <string name="YOUTUBE_API_KEY">AIzaSyDrLzBwXscaHGXOMANe8zDIOX15RJCd27E</string>
+
+
+    <string name="device">Device:</string>
+    <string-array name="devices">
+        <item>CPU</item>
+        <item>GPU</item>
+        <item>NNAPI</item>
+    </string-array>
+
+    <string name="model">Model:</string>
+    <string-array name="models">
+        <item>Float </item>
+        <item>Quantized</item>
+    </string-array>
 
 </resources>

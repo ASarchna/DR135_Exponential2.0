@@ -43,7 +43,7 @@ public class LocalHorizonalViewAdapter extends RecyclerView.Adapter<LocalHorizon
                     Intent intent = new Intent(context, PlaceDetailsActivity.class);
                     intent.putExtra("placeId",localRecommendationList.get(position).getPlaceId());
                     Log.e("xxxxk",localRecommendationList.get(position).getPlaceId());
-                    context.startActivity(new Intent(context, PlaceDetailsActivity.class));
+                    context.startActivity(intent );
                     String productName = localRecommendationList.get(position).getDescription().toString();
                 }
             });

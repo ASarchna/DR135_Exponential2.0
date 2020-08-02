@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <LinearLayout
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/bottom_sheet"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#fff"
+        android:orientation="vertical"
+        app:behavior_hideable="true"
+        android:gravity="center_horizontal"
+        app:behavior_peekHeight="56dp"
+        app:layout_behavior="android.support.design.widget.BottomSheetBehavior">
+
+        <RelativeLayout
+            android:layout_marginTop="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/top_view"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Report &quot;brutus7&quot; "
+                android:layout_marginLeft="20dp"
+                android:id="@+id/report_title"
+                android:textSize="19sp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="20dp" />
+
+        </RelativeLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/why_report"
+            android:layout_marginLeft="20dp"
+
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:layout_marginRight="20dp"
+            android:text="Choose a reason for reporting this account.\nWe won't tell this user who reported them."
+            />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp">
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:gravity="center"
+                android:text="cancel"
+                android:layout_gravity="start"
+                android:textSize="17sp"
+                android:id="@+id/report_cancel"
+                android:layout_marginStart="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginEnd="20dp" />
+            <ProgressBar
+                android:layout_width="25dp"
+                android:layout_height="50dp"
+                android:layout_toLeftOf="@id/report_ok"
+                android:id="@+id/report_progress"
+                android:visibility="gone"
+                android:foregroundGravity="center_vertical"
+                android:indeterminateDrawable="@drawable/progressbar"/>
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:gravity="center"
+                android:text="ok"
+                android:layout_alignParentRight="true"
+                android:layout_gravity="end"
+                android:textSize="17sp"
+                android:id="@+id/report_ok"
+                android:layout_marginBottom="10dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_alignParentEnd="true" />
+        </RelativeLayout>
+
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>

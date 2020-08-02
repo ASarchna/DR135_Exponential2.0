@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.gowa_goaoverwhelminglywelcomesyou">
-    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <uses-feature
-        android:name="android.hardware.camera"/>
-
+        android:name="android.hardware.camera"
+        android:required="false" />
     <uses-feature android:name="android.hardware.camera.autofocus" />
 
     <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission
         android:name="android.permission.WRITE_EXTERNAL_STORAGE"
         android:maxSdkVersion="18" />
@@ -24,26 +26,64 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".YoutubeRecommendation.YoutubeActivity"
-            android:theme="@style/AppThemeNoActionBar"/>
-        <activity android:name=".PlaceDetails.PlaceDetailsActivity"
 
-android:theme="@style/AppThemeNoActionBar"/>
-        <activity android:name=".Hotels.HotelSelectorActivity"
-            android:theme="@style/AppThemeNoActionBar"/>
-        <activity android:name=".Hotels.HotelsTabbedActivity"
-            android:theme="@style/AppThemeNoActionBar"/>
+
+        <activity android:name=".TestActivity"
+            android:theme="@style/AppThemeNoActionBar"
+
+>
+
+        </activity>
+<activity
+    android:name=".PlaceDetails.CreateProfileActivity"
+    android:theme="@style/AppThemeNoActionBar"/>
+        <activity android:name=".SurfaceViewActivity" />
+        <activity
+            android:name=".CameraActivity"
+            android:theme="@style/AppThemeNoActionBar" />
+        <activity
+            android:name=".PlaceDescriptionActivity"
+            android:theme="@style/AppThemeNoActionBar" />
+        <activity
+            android:name=".Flights.Flights_to_goa_fragment"
+            android:theme="@style/AppThemeNoActionBar" />
+        <activity
+            android:name=".BlogSection.ReadingBlogsActivity"
+            android:theme="@style/AppThemeNoActionBar" />
+        <activity
+            android:name=".BlogSection.BlogsActivity"
+            android:theme="@style/AppThemeNoActionBar" />
+        <activity android:name=".ClassifyActivity" />
+        <activity
+            android:name=".YoutubeRecommendation.YoutubeActivity"
+            android:theme="@style/AppThemeNoActionBar" />
+        <activity
+            android:name=".Trains.Train_Fragment"
+            android:theme="@style/AppThemeNoActionBar" />
+        <activity
+            android:name=".PlaceDetails.PlaceDetailsActivity"
+            android:theme="@style/AppThemeNoActionBar" />
+        <activity
+            android:name=".Hotels.HotelSelectorActivity"
+            android:theme="@style/AppThemeNoActionBar" />
+        <activity
+            android:name=".Hotels.HotelsTabbedActivity"
+            android:theme="@style/AppThemeNoActionBar" />
         <activity
             android:name=".Signup.SignupActivity"
-            android:theme="@style/AppThemeNoActionBar"/>
-        <activity android:name=".PlaceDetails.FaresDetailsActivity"
-            android:theme="@style/AppThemeNoActionBar"/>
-        <activity android:name=".MapsActivity"
-            android:theme="@style/AppThemeNoActionBar"/>
-        <activity android:name=".Login.LoginActivity"
-            android:theme="@style/AppThemeNoActionBar"/>
-        <activity android:name=".Login.LoginOptionsActivity"
-            android:theme="@style/AppThemeNoActionBar"/>
+            android:theme="@style/AppThemeNoActionBar" />
+        <activity
+            android:name=".PlaceDetails.FaresDetailsActivity"
+            android:theme="@style/AppThemeNoActionBar" />
+        <activity
+            android:name=".MapsActivity"
+            android:theme="@style/AppThemeNoActionBar" />
+        <activity
+            android:name=".Login.LoginActivity"
+            android:theme="@style/AppThemeNoActionBar" />
+        <activity
+            android:name=".Login.LoginOptionsActivity"
+            android:theme="@style/AppThemeNoActionBar" />
         <activity
             android:name=".Splash.SplashActivity"
             android:theme="@style/AppThemeNoActionBar">
@@ -53,8 +93,19 @@ android:theme="@style/AppThemeNoActionBar"/>
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity"
-            android:theme="@style/AppThemeNoActionBar"/>
+        <activity
+            android:name=".MainActivity"
+            android:theme="@style/AppThemeNoActionBar" />
+
+        <provider
+            android:name=".GenericFileProvider"
+            android:authorities="${applicationId}.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_paths" />
+        </provider>
     </application>
 
 </manifest>
