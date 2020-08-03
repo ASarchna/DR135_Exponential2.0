@@ -7,3 +7,4 @@ Team Members:
 - Shikhar Srivastva
 - Ravikant Singh
 - Atul Kumar
+- Priyanshu Nayan
