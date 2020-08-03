@@ -1,5 +1,6 @@
 package com.example.gowa_goaoverwhelminglywelcomesyou;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
@@ -37,6 +38,10 @@ import com.example.gowa_goaoverwhelminglywelcomesyou.Login.LoginOptionsActivity;
 import com.example.gowa_goaoverwhelminglywelcomesyou.PlaceDetails.PlaceDetailsActivity;
 import com.example.gowa_goaoverwhelminglywelcomesyou.Splash.SplashActivity;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -59,11 +64,26 @@ public class TestActivity extends AppCompatActivity {
 
     private Camera mCamera;
     private SurfaceViewActivity mPreview;
+    String key;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test);
+
+        FirebaseDatabase.getInstance().getReference().child("key").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                key = String.valueOf(dataSnapshot.getValue());
+                Log.d("xxxx",key);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
 
         // Create an instance of Camera
         mCamera = getCameraInstance();
@@ -211,7 +231,7 @@ public class TestActivity extends AppCompatActivity {
             public Map<String, String> getHeaders() throws AuthFailureError {
                 Map<String, String> params = new HashMap<String, String>();
                 params.put("Content-Type", "application/json; charset=UTF-8");
-                params.put("Authorization", getString(R.string.MODEL_TOKEN));
+                params.put("Authorization", key);
                 return params;
             }
                 @Override

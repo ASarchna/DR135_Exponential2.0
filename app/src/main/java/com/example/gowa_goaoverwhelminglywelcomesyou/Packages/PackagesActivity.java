@@ -48,13 +48,6 @@ public class PackagesActivity extends AppCompatActivity {
         prices = new ArrayList<>();
         progressDialog = new ProgressDialog(PackagesActivity.this);
 
-
-
-
-
-
-
-
         packagesList = new ArrayList<>();
         packagesAdapter = new PackagesAdapter(PackagesActivity.this, packagesList);
 
