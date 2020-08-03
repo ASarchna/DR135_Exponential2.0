@@ -26,7 +26,8 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
     <string name="YOUTUBE_API_KEY">AIzaSyDrLzBwXscaHGXOMANe8zDIOX15RJCd27E</string>
-
+    <string name="model_url">https://automl.googleapis.com/v1beta1/projects/858959113323/locations/us-central1/models/ICN1895912089029967872:predict</string>
+    <string name="MODEL_TOKEN">Bearer ya29.c.Ko8B1gcV8h4E7wkan4WvJqhtiWrYCDVDyyOrrgiBpYe9LUxNv5sygGgnqQJVKGkC_6TkJwgjRZQSWrk_AU_9i-gDzPsWtgDTy8ta5A6JtCs_qRtC18sH5EnDW3b9Z_89GrwymACL_VpCiQZe2DUio29_I5s41iVU-b9WB4GZh4LRthLUeFsd4TL6ToIdYKEPiq0</string>
 
     <string name="device">Device:</string>
     <string-array name="devices">

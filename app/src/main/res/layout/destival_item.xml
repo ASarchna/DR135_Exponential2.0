@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/main_layout">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="200dp"
+        android:layout_height="350dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
+        android:id="@+id/cv_fest"
+        android:background="@drawable/festival_bg"
+        android:layout_marginBottom="10dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="220dp"
+                android:id="@+id/id1"
+                android:layout_alignParentTop="true"
+                android:orientation="vertical">
+
+
+                <com.facebook.drawee.view.SimpleDraweeView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="fitXY"
+                    android:id="@+id/imageview" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/festival_tag"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="20dp"
+                android:paddingTop="5dp"
+                android:id="@+id/upcoming"
+                android:visibility="gone"
+                android:paddingBottom="5dp"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Upcoming"
+                    android:textColor="#ffffff"
+                    android:paddingStart="10dp"
+                    android:paddingRight="10dp"
+                    android:paddingEnd="10dp"
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="140dp"
+                android:layout_gravity="bottom"
+                android:gravity="top"
+                android:layout_alignParentBottom="true"
+                android:id="@+id/id2"
+                android:paddingTop="10dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/festival_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="19dp"
+                    android:singleLine="true"
+                    android:fontFamily="@font/sourcesanspro_bold"
+                    android:letterSpacing="-0.02"
+                    android:lineSpacingExtra="2sp"
+                    android:text="Festival"
+                    android:textColor="?attr/festCard_name"
+                    android:layout_marginTop="5dp"
+                    android:textSize="17sp" />
+                <TextView
+                    android:id="@+id/date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="19dp"
+                    android:singleLine="true"
+                    android:fontFamily="@font/sourcesanspro_regular"
+                    android:letterSpacing="-0.02"
+                    android:lineSpacingExtra="2sp"
+                    android:text="dd/mm"
+                    android:textColor="?attr/festCard_date"
+                    android:textSize="15sp" />
+                <TextView
+                    android:id="@+id/desc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="19dp"
+                    android:layout_marginTop="5dp"
+                    android:maxLines="3"
+                    android:lines="3"
+                    android:fontFamily="@font/sourcesanspro_semibold"
+                    android:letterSpacing="-0.02"
+                    android:lineSpacingExtra="2sp"
+                    android:text="dd/mm"
+                    android:textColor="?attr/festCard_about"
+                    android:textSize="13sp" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="end|center_vertical"
+                    android:layout_gravity="bottom"
+                    android:layout_marginTop="10dp">
+                    <ImageView
+                        android:layout_width="12dp"
+                        android:layout_height="12dp"
+                        android:src="@drawable/ic_location"
+                        android:tint="?attr/festCard_loc"/>
+                    <TextView
+                        android:id="@+id/location"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:layout_marginRight="19dp"
+                        android:singleLine="true"
+                        android:gravity="end|bottom"
+                        android:fontFamily="@font/sourcesanspro_semibold"
+                        android:letterSpacing="-0.02"
+                        android:lineSpacingExtra="2sp"
+                        android:text="dd/mm"
+                        android:textColor="?attr/festCard_loc"
+                        android:textSize="13sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:layout_marginLeft="19dp"
+                    android:layout_marginBottom="13dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:visibility="gone"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins_regular"
+                        android:letterSpacing="-0.02"
+                        android:lineSpacingExtra="2sp"
+                        android:text="$845.00"
+                        android:textColor="#ffffff"
+                        android:textSize="18sp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end"
+                        android:layout_marginRight="19dp"
+                        android:gravity="end"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:visibility="gone"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:tint="#fff" />
+
+
+                        <TextView
+                            android:visibility="gone"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="4.4dp"
+
+                            android:drawableTint="#ffffff"
+                            android:gravity="end"
+                            android:letterSpacing="-0.02"
+                            android:lineSpacingExtra="10sp"
+                            android:text="6531"
+                            android:textColor="#bec2ce"
+                            android:textSize="14sp" />
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+
+
+
+    </androidx.cardview.widget.CardView>
+
+</LinearLayout>

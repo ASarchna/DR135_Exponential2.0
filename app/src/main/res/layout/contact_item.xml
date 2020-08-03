@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/fuckingRL">
+    <RelativeLayout
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_margin="15dp"
+        android:padding="0dp"
+        android:id="@+id/profile_pic_cardview"
+        android:layout_marginRight="2dp"
+        android:layout_marginEnd="2dp">
+
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:src="@drawable/ic_emergency_call"
+            android:layout_alignParentLeft="true"
+            android:id="@+id/requestProfilePic"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            app:roundedCornerRadius="30dp"
+            app:placeholderImage="@drawable/ic_emergency_call"
+            app:placeholderImageScaleType="fitXY"
+            android:layout_alignParentStart="true" />
+
+
+    </RelativeLayout>
+    <TextView
+
+        android:id="@+id/name"
+        android:textSize="19sp"
+        android:layout_toRightOf="@id/profile_pic_cardview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="name"
+        android:textStyle="bold"
+        android:fontFamily="@font/sourcesanspro_semibold"
+        android:layout_marginTop="20dp"
+        android:textColor="#C93E244D"
+        android:layout_toEndOf="@id/profile_pic_cardview" />
+    <TextView
+        android:maxLines="1"
+        android:singleLine="true"
+        android:id="@+id/phone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/name"
+        android:text="myname"
+        android:textSize="14.5sp"
+        android:layout_marginTop="5dp"
+        android:fontFamily="@font/sourcesanspro_semibold"
+        android:textColor="#A5A5A5"
+        android:layout_toLeftOf="@id/requestTime"
+        android:layout_marginRight="5dp"
+        android:layout_toRightOf="@id/profile_pic_cardview"
+        android:layout_toStartOf="@id/requestTime"
+        android:layout_marginEnd="5dp"
+        android:layout_toEndOf="@id/profile_pic_cardview" />
+
+    <ImageView
+        android:id="@+id/requestTime"
+        android:text=""
+        android:textColor="#A5A5A5"
+        android:layout_marginRight="20dp"
+        android:layout_width="40dp"
+        android:src="@drawable/ic_telephone"
+        android:layout_alignTop="@id/name"
+        android:layout_height="40dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginEnd="20dp"
+        android:layout_alignParentEnd="true" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#D7D7D7"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_below="@id/profile_pic_cardview"/>
+
+</RelativeLayout>

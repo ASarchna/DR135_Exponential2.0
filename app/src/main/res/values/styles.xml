@@ -1,7 +1,7 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
@@ -70,5 +70,37 @@
         <item name="android:textStyle">italic</item>
         <item name="android:typeface">sans</item>
     </style>
+
+    <style name="LightTheme" parent="AppTheme">
+        <item name="textColor1">#5A5A5A</item>
+        <item name="textColor2">#7B7B7B</item>
+        <item name="bgColor">#ffffff</item>
+        <item name="color3">#D3D3D3</item>
+        <item name="colorBlue">#2196F3</item>
+        <item name="tintColor">#A1FFFFFF</item>
+        <item name="festCard_color">#ffffff</item>
+        <item name="festCard_name">#2E2E2E</item>
+        <item name="festCard_date">#9C27B0</item>
+        <item name="festCard_about">#5F5F5F</item>
+        <item name="festCard_loc">#484848</item>
+        <item name="bordercolor">#ffffff</item>
+
+    </style>
+    <style name="DarkTheme" parent="AppTheme">
+        <item name="textColor1">#DFDFDF</item>
+        <item name="textColor2">#E3E3E3</item>
+        <item name="bgColor">#26075B</item>
+        <item name="color3">#5021A5</item>
+        <item name="colorBlue">#ffffff</item>
+        <item name="tintColor">#353535</item>
+        <item name="festCard_color">#171717</item>
+        <item name="festCard_name">#FDFDFD</item>
+        <item name="festCard_date">#C7C7C7</item>
+        <item name="festCard_about">#BABABA</item>
+        <item name="festCard_loc">#B3B3B3</item>
+        <item name="bordercolor">#DCDCDC</item>
+
+    </style>
+
 
 </resources>

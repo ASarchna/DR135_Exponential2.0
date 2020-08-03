@@ -46,11 +46,13 @@ public class PackagesActivity extends AppCompatActivity {
         weight.setEnabled(true);
         recyclerView = findViewById(R.id.recycler_view);
         prices = new ArrayList<>();
-
-
-
-
         progressDialog = new ProgressDialog(PackagesActivity.this);
+
+
+
+
+
+
 
 
         packagesList = new ArrayList<>();
@@ -59,6 +61,11 @@ public class PackagesActivity extends AppCompatActivity {
 
         recyclerView.setAdapter(packagesAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false));
+
+        if(getIntent().getIntExtra("type",1) == 2){
+            findViewById(R.id.package_data_intaker).setVisibility(View.GONE);
+            getPackagesData(50000);
+        }
 
         findViewById(R.id.search).setOnClickListener(new View.OnClickListener() {
             @Override

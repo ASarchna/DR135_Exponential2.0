@@ -22,14 +22,14 @@
             >
 
             <TextView
+                android:id="@+id/report_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Report &quot;brutus7&quot; "
-                android:layout_marginLeft="20dp"
-                android:id="@+id/report_title"
-                android:textSize="19sp"
                 android:layout_gravity="center_vertical"
-                android:layout_marginStart="20dp" />
+                android:layout_marginStart="20dp"
+                android:layout_marginLeft="20dp"
+                android:text="Se Cathedral"
+                android:textSize="19sp" />
 
         </RelativeLayout>
         <TextView
@@ -41,7 +41,7 @@
             android:layout_marginTop="20dp"
             android:layout_marginBottom="20dp"
             android:layout_marginRight="20dp"
-            android:text="Choose a reason for reporting this account.\nWe won't tell this user who reported them."
+            android:text="The Sé Catedral de Santa Catarina, known as Se Cathedral, is the cathedral of the Latin Rite Roman Catholic Archdiocese of Goa and Daman and the seat of the Patriarch of the East Indies. It is located......."
             />
 
         <RelativeLayout
@@ -73,7 +73,7 @@
                 android:layout_width="100dp"
                 android:layout_height="50dp"
                 android:gravity="center"
-                android:text="ok"
+                android:text="See more"
                 android:layout_alignParentRight="true"
                 android:layout_gravity="end"
                 android:textSize="17sp"

@@ -4,6 +4,7 @@ package com.example.gowa_goaoverwhelminglywelcomesyou.PlaceDetails;
 import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.net.Uri;
@@ -41,6 +42,7 @@ import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -362,7 +364,7 @@ else{
 //                mapIntent.setPackage("com.google.android.apps.maps");
 //                startActivity(mapIntent);
 
-                String uri = String.format(Locale.ENGLISH, "geo:%f,%f?q=tourist plcaes", Float.parseFloat(place_lattitude), Float.parseFloat(place_longitude));
+                String uri = String.format(Locale.ENGLISH, "geo:%f,%f?q=tourist places", Float.parseFloat(place_lattitude), Float.parseFloat(place_longitude));
                 Intent mapIntent2 = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
                 mapIntent2.setPackage("com.google.android.apps.maps");
                 startActivity(mapIntent2);
@@ -448,13 +450,10 @@ else{
             @Override
             public void onClick(View v) {
                 if(likeState==0) {
-                    likeView.setImageResource(R.drawable.ic_heart_filled);
-                    likeState = 1;
+                    favorite(1);
                 }
                 else{
-                    likeView.setImageResource(R.drawable.ic_heart);
-                    likeState = 0;
-
+                    favorite(0);
                 }
             }
         });
@@ -463,8 +462,59 @@ else{
         getDataFromFirebase(type, placeId);
     }
 
+    private void favorite(int action) {
+        if(action==0){
+            FirebaseDatabase.getInstance().getReference().child("users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("favorite-places").child(placeId)
+            .removeValue().addOnSuccessListener(new OnSuccessListener<Void>() {
+                @Override
+                public void onSuccess(Void aVoid) {
+                    likeView.setImageResource(R.drawable.ic_heart);
+                    likeState = 0;
+                    SharedPreferences sharedPreferences = getSharedPreferences("userData",MODE_PRIVATE);
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    String favorites = sharedPreferences.getString("favorites","");
+                    editor.putString("favorites",favorites.replace(placeId+",",""));
+                    editor.apply();
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+
+                }
+            });
+            return;
+        }
+        Map<String,Object> map = new HashMap<>();
+        map.put("name",placeName.getText());
+        map.put("image",imageList.get(0));
+        FirebaseDatabase.getInstance().getReference().child("users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("favorite-places").child(placeId)
+                .setValue(map).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                likeView.setImageResource(R.drawable.ic_heart_filled);
+                likeState = 1;
+                SharedPreferences sharedPreferences = getSharedPreferences("userData",MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                String favorites = sharedPreferences.getString("favorites","");
+                editor.putString("favorites",favorites+placeId+",");
+                editor.apply();
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+
+            }
+        });
+    }
+
     private void getDataFromFirebase(String type, String placeId) {
         Log.e("xxxxu",placeId);
+        SharedPreferences sharedPreferences = getSharedPreferences("userData",MODE_PRIVATE);
+        String favorites = sharedPreferences.getString("favorites","");
+        if(favorites.contains(placeId)) {
+            likeView.setImageResource(R.drawable.ic_heart_filled);
+            likeState=1;
+        }
 
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child(StringVariable.PLACE_DETAILS).child(placeId);
         databaseReference.addValueEventListener(new ValueEventListener() {
@@ -552,6 +602,16 @@ else{
                         Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
                         mapIntent.setPackage("com.google.android.apps.maps");
                         startActivity(mapIntent);
+                    }
+                });
+                findViewById(R.id.streetview).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Uri gmmIntentUri = Uri.parse("google.streetview:cbll="+lattitude+","+longitude);
+                        Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+                        mapIntent.setPackage("com.google.android.apps.maps");
+                        startActivity(mapIntent);
+
                     }
                 });
                 for(DataSnapshot ds : dataSnapshot.child(StringVariable.COMMENTS).getChildren()){

@@ -16,6 +16,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -51,11 +52,16 @@ public class CreateProfileActivity extends AppCompatActivity implements View.OnC
     String[] items = new String[]{"Single", "Married", "Others"};
     String[] items2 = new String[]{"Male", "Female", "Others"};
     String[] items3 = new String[]{"Christianity", "Hinduism", "Islam", "Buddhism", "others"};
+    boolean isUpdating = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_profile);
+        if(getIntent().getIntExtra("from",0)==1){
+            isUpdating = true;
+            ((TextView)findViewById(R.id.create_profile_button)).setText("Save");
+        }
         init();
     }
 
@@ -94,6 +100,20 @@ public class CreateProfileActivity extends AppCompatActivity implements View.OnC
         imageView.performClick();
         imageView.performClick();
         imageView.performClick();
+        if(isUpdating){
+            FirebaseDatabase.getInstance().getReference().child("users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    nameEditText.setText(String.valueOf(dataSnapshot.child("name").getValue()));
+                    ageEditText.setText(String.valueOf(dataSnapshot.child("age").getValue()));
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
+        }
     }
 
     private void animateAvatar() {
@@ -182,7 +202,7 @@ public class CreateProfileActivity extends AppCompatActivity implements View.OnC
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 setSharedPrefs(name, age, married, gender, religion);
-                startActivity(new Intent(CreateProfileActivity.this, MainActivity.class));
+                startActivity(new Intent(CreateProfileActivity.this, MainActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
                 finish();
             }
         });

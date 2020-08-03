@@ -3,7 +3,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:clipChildren="false"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="?attr/bgColor">
+
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"
@@ -17,7 +19,8 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:id="@+id/main_scroll">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -29,33 +32,42 @@
         android:layout_height="38dp"
         android:layout_marginTop="30dp">
 
-        <FrameLayout
-            android:id="@+id/countries"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_alignParentStart="true"
-            android:layout_centerVertical="true"
-            android:layout_toStartOf="@+id/frameLayout">
 
-            <TextView
-                android:id="@+id/tv_country_1"
-                android:text="Hello, "
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="start"
-                android:textSize="24sp"
-                android:textStyle="bold"/>
+                android:orientation="horizontal">
+                <com.facebook.drawee.view.SimpleDraweeView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginLeft="30dp"
+                    android:layout_gravity="center"
+                    app:placeholderImage="@drawable/user"
+                    android:id="@+id/profilepic"
+                    />
 
-            <TextView
-                android:id="@+id/tv_country_2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:textSize="28sp"
-                android:textStyle="bold"
-                android:visibility="gone" />
+                <TextView
+                    android:id="@+id/tv_country_1"
+                    android:text="Hello, "
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="24sp"
+                    android:textColor="?attr/textColor2"
+                    android:gravity="start"
+                    android:layout_marginLeft="20dp"
+                    android:textStyle="bold"/>
+            </LinearLayout>
 
-        </FrameLayout>
+
+<!--            <TextView-->
+<!--                android:id="@+id/tv_country_2"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_gravity="center_vertical"-->
+<!--                android:textSize="28sp"-->
+<!--                android:textStyle="bold"-->
+<!--                android:visibility="gone" />-->
+
 
         <FrameLayout
             android:layout_width="85dp"
@@ -75,7 +87,7 @@
             <ImageView
                 android:layout_width="17dp"
                 android:layout_height="17dp"
-                android:tint="#A1FFFFFF"
+                android:tint="?attr/tintColor"
                 android:layout_marginRight="10dp"
                 android:layout_gravity="center_vertical|end"
                 android:src="@drawable/btn_view"/>
@@ -91,6 +103,7 @@
         android:layout_marginTop="18dp"
         android:layout_marginStart="@dimen/recycler_view_left_offset"
         android:clipChildren="false"
+        android:isScrollContainer="false"
         android:overScrollMode="never" />
 
     <RelativeLayout
@@ -112,17 +125,21 @@
             android:layout_height="wrap_content"
             android:background="@android:color/white"/>
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="150dp"
-            android:background="@drawable/gradient_map"
-            android:layout_below="@+id/gradient_top"/>
+<!--        <View-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="150dp"-->
+<!--            android:background="@drawable/gradient_map"-->
+<!--            android:layout_below="@+id/gradient_top"/>-->
 
-        <TextSwitcher
+        <TextView
             android:id="@+id/ts_description"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/left_offset"
+            android:layout_marginStart="20dp"
+            android:fontFamily="@font/sourcesanspro_semibold"
+            android:maxLines="2"
+            android:textColor="?attr/textColor1"
+            android:textSize="17sp"
             android:layout_marginEnd="10dp"/>
 
         <FrameLayout
@@ -178,12 +195,13 @@
                     <ImageView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:src="@drawable/ic_hotel"
+                        android:src="@drawable/ic_access"
                         />
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Hotels"
+                        android:textColor="?attr/textColor1"
                         android:textAlignment="center"/>
                 </LinearLayout>
 
@@ -205,6 +223,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Trains"
+                        android:textColor="?attr/textColor1"
                         android:textAlignment="center"/>
                 </LinearLayout>
 
@@ -237,6 +256,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Flights"
+                        android:textColor="?attr/textColor1"
                         android:textAlignment="center"/>
                 </LinearLayout>
                 <LinearLayout
@@ -261,6 +281,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Tours &amp; Packages"
+                        android:textColor="?attr/textColor1"
                         android:textAlignment="center" />
                 </LinearLayout>
                 <LinearLayout
@@ -284,6 +305,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Maps"
+                        android:textColor="?attr/textColor1"
                         android:textAlignment="center"/>
                 </LinearLayout>
 
@@ -303,7 +325,24 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
                 android:textSize="20dp"
+                android:textColor="?attr/textColor1"
                 android:layout_marginTop="30dp"
+                android:layout_marginBottom="15dp"
+                android:text="Festivals"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/festivals_recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:textSize="20dp"
+                android:layout_marginTop="30dp"
+                android:textColor="?attr/textColor1"
                 android:layout_marginBottom="15dp"
                 android:text="From The Community"/>
 
@@ -318,6 +357,7 @@
                 android:layout_marginLeft="15dp"
                 android:textSize="20dp"
                 android:layout_marginTop="30dp"
+                android:textColor="?attr/textColor1"
                 android:text="Recommended Reading"/>
 
             <androidx.recyclerview.widget.RecyclerView
@@ -332,6 +372,7 @@
                 android:layout_marginLeft="15dp"
                 android:textSize="20dp"
                 android:layout_marginTop="30dp"
+                android:textColor="?attr/textColor1"
                 android:text="Trending Video"/>
 
             <androidx.recyclerview.widget.RecyclerView
@@ -339,6 +380,34 @@
                 android:id="@+id/youtube_recyclerview"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:paddingLeft="40dp"
+                >
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/ic_alarm"
+                    android:id="@+id/emergency_icon"
+                    />
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/ic_complaint"
+                    android:id="@+id/complaint_icon"
+                    android:layout_marginLeft="20dp"
+                    />
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/ic_light"
+                    android:id="@+id/light_mode"
+                    android:layout_marginLeft="20dp"
+                    />
+            </LinearLayout>
 
         </LinearLayout>
     </RelativeLayout>
@@ -346,5 +415,14 @@
     </LinearLayout>
 
     </ScrollView>
-
+    <ImageView
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/ic_light"
+        android:id="@+id/light_floater"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="-50dp"
+        android:visibility="gone"
+        />
 </RelativeLayout>

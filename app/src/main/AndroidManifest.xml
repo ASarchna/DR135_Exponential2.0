@@ -17,30 +17,36 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
 
     <application
         android:name=".MyApplication"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/logo"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
-
-        <activity android:name=".TestActivity"
-            android:theme="@style/AppThemeNoActionBar"
-
->
-
-        </activity>
-        <activity android:name=".Packages.PackagesActivity"
-            android:theme="@style/AppThemeNoActionBar"/>
-        <activity android:name=".Packages.PackagesDetailsActivity"
-            android:theme="@style/AppThemeNoActionBar"/>
-<activity
-    android:name=".PlaceDetails.CreateProfileActivity"
-    android:theme="@style/AppThemeNoActionBar"/>
+        <activity android:name=".AllComplaintsActivity"></activity>
+        <activity android:name=".ComplaintActivity" />
+        <activity
+            android:name=".FestivalActivity"
+            android:theme="@style/AppThemeNoActionBar" />
+        <activity
+            android:name=".Emergency.EmergencyActivity"
+            android:theme="@style/AppThemeNoActionBar" />
+        <activity
+            android:name=".TestActivity"
+            android:theme="@style/AppThemeNoActionBar" />
+        <activity
+            android:name=".Packages.PackagesActivity"
+            android:theme="@style/AppThemeNoActionBar" />
+        <activity
+            android:name=".Packages.PackagesDetailsActivity"
+            android:theme="@style/AppThemeNoActionBar" />
+        <activity
+            android:name=".PlaceDetails.CreateProfileActivity"
+            android:theme="@style/AppThemeNoActionBar" />
         <activity android:name=".SurfaceViewActivity" />
         <activity
             android:name=".CameraActivity"
