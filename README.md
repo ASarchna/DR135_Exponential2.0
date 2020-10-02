@@ -1,6 +1,6 @@
 # DR135_Exponential2.0
 
-#Performance of different models on the scrapped Data:
+## Performance of different models on the scrapped Data:
 
 Optimizer used: RMS.
 
@@ -15,3 +15,5 @@ vgg16 : train 71.41 cross_val 74.68 20 epochs
 resnet50 : train 80.00 cross_val 7.87 20 epochs
 
 mobileNet : train 85.44 cross_val 79.63 20 x3 epochs
+
+The file webscrape.py needs an updated chromedriver for execution. Make sure that the web driver is up to date.
